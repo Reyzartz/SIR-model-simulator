@@ -1,0 +1,141 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+    <script src="./Scripts/script.js"></script>
+    <script src="./Scripts/map.js"></script>
+    <script src="./Scripts/Area.js"></script>
+    <script src="./Scripts/init.js"></script>
+    <script src="./Scripts/Jojo.js"></script>
+    <script src="./Scripts/movePeople.js"></script>
+    <script src="./Scripts/spreadInfecTion.js"></script>
+    <script src="./Scripts/animate.js"></script>
+    <script src="./Scripts/setdata.js"></script>
+    <script src="./Scripts/showGraph.js"></script>
+    <script src="./Scripts/input.js"></script>
+    <script src="./Scripts/Data.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="images/Logo3.png" alt="Logo"/>
+            <h1>
+                SIR Model Simulator
+            </h1>
+        </div>
+        
+        <nav>
+            <ul>
+                <li>
+                    <a href="./index.html">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="./info.html">
+                        Info
+                    </a>
+                </li>
+                <li>
+                    <a href="/info.html">
+                        About
+                    </a>
+                </li>
+                
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="filler">
+            <div >
+                <select class="change-map" id="change-map" onclick="changeMap(event)">
+                    <option class="map-option" value='0' selected>
+                        City
+                    </option>
+                    <option class="map-option" value='1'>
+                        Lockdown
+                    </option>
+                </select>
+            </div>
+            <div class="effected_data">
+                <div class="flex" title="Total number of citizen that are not infected">
+                    <div class="marker green"> </div>
+                    Susceptable :
+                    <span id="susceptible"></span>
+                </div>
+                <div class="flex" title="Total number of citizen that are infected and can infect others">
+                    <div class="marker red"></div>
+                    Infected :
+                    <span id ="infected"></span>
+                </div>
+                <div class="flex" title="Total number of people that have recovered and are now immune">
+                    <div class="marker blue"></div>
+                    Recoverd :
+                    <span id = "recovered"></span>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="filters">
+                <h2>Filters</h2>
+                <div class="filter" title="the maximum amount of citizen each individual can infect">
+                    <h3>R&orderof; ( Infection Rate)</h3>
+                    <input type="number" class="number-Input" value="2" id="transmission-rate">
+                </div>
+                <div class="filter" title="how long an individual citizen can stay indfected">
+                  <h3>Infection period</h3>
+                  <input type="number" class="number-Input" value="6" id="infection-period">
+                </div>
+                <div class="filter-btn">
+                    <button class="btn" onclick="openAdvanceFilters()">
+                        ADVANCE
+                    </button>
+                    <button onclick="applyChanges()" class="btn" id="apply-btn">
+                        Apply
+                    </button>
+                </div>
+
+                <div id="advance-filters">
+                    <div class="filter" title="total population of the area">
+                        <h3>Population</h3>
+                        <input type="number" class="number-Input" value="500" id="population" min="100" max ="10000">
+                    </div>
+                    <div class="filter">
+                        <h3>Initial population Infected (%)</h3>
+                        <input type="number" class="number-Input" value="1" id="intial-infected" min="1" max ="100">
+                    </div>
+                    <div class="filter">
+                        <h3>Hygine</h3>
+                        <input type="range" class="slider" value="0" id="hygine" min ="0"  max="10">
+                    </div>
+                    <div class="filter">
+                        <h3>Social Distancing</h3>
+                        <input type="range" class ="slider" value="0" id="touch-probability" min = "0" max ="30">
+                    </div>
+                    <div class="filter">
+                        <h3>Going out in Public</h3>
+                        <input type="range" class ="slider" value="80" id="going-out-probability" min = "5" max ="100">
+                    </div>
+                </div>
+            </div>
+            <div class="graph" id = "canvas-graph">
+                <div class="graph-legend">
+                    <div class="flex">
+                        <div class="marker green"> </div>
+                        Total Popualtion affected 
+                    </div>
+                    <div class="flex">
+                        <div class="marker red"></div>
+                        Infected
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
